@@ -34,14 +34,14 @@
     jQuery(document).ready(function($){
         $('#submit-chat').click(function(){
             if($('#text-chat').val() != ""){
-                var data = {name: $('#text-name').val(), message: $('#text-chat').val(), chanel}
+                var data = {name: $('#text-name').val(), message: $('#text-chat').val()}
                 socket.emit('sendChatToServer', data );
             }else{
                 alert('Please enter text to chat');
             }
             return false;
         });
-        socket.on('serverChatToClient', function(message){
+        socket.on('serverChatToClientadm', function(message){
             $('.chat-content ul').append('<li><strong>'+message.name+':</strong> '+message.message+'</li>');
         });
     });

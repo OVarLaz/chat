@@ -26,7 +26,8 @@ io.on('connection', function(socket) {
     console.log("Connected");
     socket.on('sendChatToServer', function(message){
         console.log(message);
-        io.sockets.emit('serverChatToClient', message);    
+        io.sockets.emit('serverChatToClient', message);
+        io.sockets.emit('serverChatToClientadm', message);    
     });
 
     socket.on('disconnect', function(socket){

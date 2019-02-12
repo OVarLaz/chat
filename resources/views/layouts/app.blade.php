@@ -73,8 +73,5 @@
 
         @yield('content')
     </div>
-
-
-    <script src="<?php echo URL::asset('js/app.js'); ?>"></script>
 </body>
 </html>
