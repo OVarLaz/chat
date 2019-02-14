@@ -23,8 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
+        $id=0;
+        if($id!=0){
+            $existeuserchat = User::find($id)
+            ->first();
+        }
         return view('chat');
     }
     public function admin()
@@ -38,17 +43,49 @@ class HomeController extends Controller
 
     public function chatpost(Request $request)
     {
-        $userchat = new User;
-        $userchat->name = $request->input('name');
-        $userchat->dni = $request->input('dni');
-        $userchat->email = $request->input('email');
-        $userchat->phone = $request->input('phone');
-        $random_text= str_random(60);
-        $token= $random_text;
-        $userchat->tokenchat = $token;
-        $userchat->save();
+        if($request->input('dni') && strlen($request->input('dni'))>=8)
+        {
+            $iduser=0;
+            $existeuser = User::select('id')
+            ->where('dni','=',$request->input('dni'))
+            ->first();
 
-        return redirect('/');
+            if($existeuser)
+            {
+                $updateuser = User::find($existeuser->id);
+                $updateuser->name = $request->input('name');
+                $updateuser->email = $request->input('email');
+                $updateuser->phone = $request->input('phone');
+                $random_text= str_random(60);
+                $token= $random_text;
+                $updateuser->tokenchat = $token;
+                $updateuser->save();
+
+                $iduser = $existeuser->id;
+
+            }
+            else
+            {
+                $userchat = new User;
+                $userchat->name = $request->input('name');
+                $userchat->dni = $request->input('dni');
+                $userchat->email = $request->input('email');
+                $userchat->phone = $request->input('phone');
+                $random_text= str_random(60);
+                $token= $random_text;
+                $userchat->tokenchat = $token;
+                $userchat->save();
+
+                $iduser = $userchat->id;
+
+            }
+        }
+        
+
+
+
+        return redirect('/')
+        ->with('iduser',$iduser);
         //return $credentials;
 
         //dd($credentials);

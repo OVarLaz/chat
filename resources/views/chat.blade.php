@@ -12,7 +12,7 @@
                 <form class="form-horizontal">
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="text-name" placeholder="Enter name"/>
+                            <input type="text" class="form-control" id="text-name" placeholder="Enter name" value="hola"/>
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-chat" placeholder="Enter chat"/>
