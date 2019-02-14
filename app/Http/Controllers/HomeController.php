@@ -43,6 +43,9 @@ class HomeController extends Controller
         $userchat->dni = $request->input('dni');
         $userchat->email = $request->input('email');
         $userchat->phone = $request->input('phone');
+        $random_text= str_random(60);
+        $token= $random_text;
+        $userchat->tokenchat = $token;
         $userchat->save();
 
         return redirect('/');
