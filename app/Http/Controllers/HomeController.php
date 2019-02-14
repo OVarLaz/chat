@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -28,5 +30,26 @@ class HomeController extends Controller
     public function admin()
     {
         return view('admichat');
+    }
+     public function chat()
+    {
+        return view('auth.userchat');
+    }
+
+    public function chatpost(Request $request)
+    {
+        $userchat = new User;
+        $userchat->name = $request->input('name');
+        $userchat->dni = $request->input('dni');
+        $userchat->email = $request->input('email');
+        $userchat->phone = $request->input('phone');
+        $userchat->save();
+
+        return redirect('/');
+        //return $credentials;
+
+        //dd($credentials);
+
+        //$user = User
     }
 }

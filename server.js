@@ -22,11 +22,21 @@ io.on('connection', function (socket) {
 */
 
 var io = require('socket.io')(8888);
+
 io.on('connection', function(socket) {
+    //console.log(io.io.engine.id);
     console.log("Connected");
+    //console.log(this.socket.sessionid);
+    //console.log(socket);
+
+    io.of('/').clients((error, clients) => {
+        if (error) throw error;
+        console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
+    });
+
     socket.on('sendChatToServer', function(message){
         console.log(message);
-        io.sockets.emit('serverChatToClient', message);
+        //io.sockets.emit('serverChatToClient', message);
         io.sockets.emit('serverChatToClientadm', message);    
     });
 
