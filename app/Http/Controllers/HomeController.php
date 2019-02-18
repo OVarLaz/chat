@@ -23,7 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
         $id=0;
         if($id!=0){
@@ -85,7 +85,7 @@ class HomeController extends Controller
 
 
         return redirect('/')
-        ->with('iduser',$iduser);
+        ->with(['userchat'=> $userchat]);
         //return $credentials;
 
         //dd($credentials);
