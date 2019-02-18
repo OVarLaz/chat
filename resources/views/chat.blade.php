@@ -13,6 +13,7 @@
                     <div class="form-group">
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-name" placeholder="Enter name" value="{{ session()->get( 'userchat.name' ) }}"/>
+                            <input type="hidden" name="token" value="{{ session()->get( 'userchat.token' ) }}">
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-chat" placeholder="Enter chat"/>
@@ -34,8 +35,10 @@
     jQuery(document).ready(function($){
         $('#submit-chat').click(function(){
             if($('#text-chat').val() != ""){
-                var data = {name: $('#text-name').val(), message: $('#text-chat').val()}
+                var data = {name: $('#text-name').val(), message: $('#text-chat').val(), token: $('#token').val()}
                 socket.emit('sendChatToServer', data );
+                $clean=$('#text-chat').val('')
+
             }else{
                 alert('Please enter text to chat');
             }

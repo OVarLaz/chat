@@ -36,6 +36,7 @@
             if($('#text-chat').val() != ""){
                 var data = {name: $('#text-name').val(), message: $('#text-chat').val()}
                 socket.emit('sendChatToServer', data );
+                $clean=$('#text-chat').val('');
             }else{
                 alert('Please enter text to chat');
             }

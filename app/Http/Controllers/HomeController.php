@@ -52,20 +52,23 @@ class HomeController extends Controller
 
             if($existeuser)
             {
-                $updateuser = User::find($existeuser->id);
-                $updateuser->name = $request->input('name');
-                $updateuser->email = $request->input('email');
-                $updateuser->phone = $request->input('phone');
+                //update user
+                $userchat = User::find($existeuser->id);
+                $userchat->name = $request->input('name');
+                $userchat->email = $request->input('email');
+                $userchat->phone = $request->input('phone');
                 $random_text= str_random(60);
                 $token= $random_text;
-                $updateuser->tokenchat = $token;
-                $updateuser->save();
+                $userchat->tokenchat = $token;
+                $userchat->save();
 
                 $iduser = $existeuser->id;
+                
 
             }
             else
             {
+                //create user
                 $userchat = new User;
                 $userchat->name = $request->input('name');
                 $userchat->dni = $request->input('dni');

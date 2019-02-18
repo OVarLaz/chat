@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
 */
 
 var io = require('socket.io')(8888);
-
+users = {};
 io.on('connection', function(socket) {
     //console.log(io.io.engine.id);
     console.log("Connected");
