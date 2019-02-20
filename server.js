@@ -29,7 +29,7 @@ io.on('connection', function(socket) {
     //console.log(this.socket.sessionid);
     //console.log(socket);
 
-    io.of('/').clients((error, clients) => {
+    io.clients((error, clients) => {
         if (error) throw error;
         console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
     });

@@ -25,24 +25,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $id=0;
-        if($id!=0){
-            $existeuserchat = User::find($id)
-            ->first();
-        }
-        return view('chat');
+        return view('auth.userchat');
+
     }
+
+    public function show($id)
+    {
+         $existeuserchat = User::find($id);
+        return view('chat')->with('userchat',$existeuserchat);
+    }
+
     public function admin()
     {
         return view('admichat');
     }
-     public function chat()
+
+    public function chat()
     {
         return view('auth.userchat');
     }
 
     public function chatpost(Request $request)
     {
+        $userchat=null;
         if($request->input('dni') && strlen($request->input('dni'))>=8)
         {
             $iduser=0;
@@ -83,16 +88,8 @@ class HomeController extends Controller
 
             }
         }
+
+        return $userchat;
         
-
-
-
-        return redirect('/')
-        ->with(['userchat'=> $userchat]);
-        //return $credentials;
-
-        //dd($credentials);
-
-        //$user = User
     }
 }

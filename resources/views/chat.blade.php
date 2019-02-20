@@ -12,8 +12,8 @@
                 <form class="form-horizontal">
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="text-name" placeholder="Enter name" value="{{ session()->get( 'userchat.name' ) }}"/>
-                            <input type="hidden" name="token" value="{{ session()->get( 'userchat.token' ) }}">
+                            <input type="text" class="form-control" id="text-name" placeholder="Enter name" value="{{$userchat->name}}"/>
+                            <input type="hidden" name="token" value="{{$userchat->tokenchat}}">
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-chat" placeholder="Enter chat"/>
@@ -28,7 +28,7 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script type="text/javascript">
     var socket = io.connect('http://localhost:8888');
