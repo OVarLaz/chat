@@ -32,6 +32,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script type="text/javascript">
     var socket = io.connect('http://localhost:8888');
+    // var socket = io.connect('http://localhost:8888/iniciando/'+'#id_user');
     jQuery(document).ready(function($){
         $('#submit-chat').click(function(){
             if($('#text-chat').val() != ""){

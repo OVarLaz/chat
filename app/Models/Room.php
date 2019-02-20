@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-//use Illuminate\Notifications\Notifiable;
-//use Illuminate\Foundation\Auth\User as Authenticatable;
-
 class Room extends Model
 {
-    //
+    protected $fillable = [
+        'message_id', 
+        'json_room',
+        //'created_at',
+    ];
 }
-
-

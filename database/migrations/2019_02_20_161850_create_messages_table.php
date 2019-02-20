@@ -15,11 +15,12 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('room_id')->unsigned();
+            $table->integer('admin_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('message');
-            $table->foreign('room_id')
-                ->references('id')->on('rooms')
+            $table->boolean('free');
+            $table->foreign('admin_id')
+                ->references('id')->on('admins')
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')->on('users')

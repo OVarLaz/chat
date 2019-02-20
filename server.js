@@ -36,7 +36,7 @@ io.on('connection', function(socket) {
 
     socket.on('sendChatToServer', function(message){
         console.log(message);
-        //io.sockets.emit('serverChatToClient', message);
+        io.sockets.emit('serverChatToClient', message);
         io.sockets.emit('serverChatToClientadm', message);    
     });
 
