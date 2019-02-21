@@ -52,13 +52,13 @@ io.on('connection', function(socket) {
         var channel = message.name;
         //console.log(channel);
         var post = {
-            admin_id: 2,
+            admin_id: 1,
             user_id: 1,
             json_message: " req.body.password",
             who_send: 1
         };
 
-        var query = db.query('INSERT INTO messages VALUES ?', post, function (err, result) {
+        var query = db.query('INSERT INTO conversacion VALUES ?', post, function (err, result) {
             if (err) {
                 console.log(err.message);
             } else {
