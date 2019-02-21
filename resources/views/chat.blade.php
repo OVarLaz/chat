@@ -13,7 +13,8 @@
                     <div class="form-group">
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-name" placeholder="Enter name" value="{{$userchat->name}}"/>
-                            <input type="hidden" name="token" value="{{$userchat->tokenchat}}">
+                            <input type="hidden" id="token" name="token" value="{{$userchat->tokenchat}}">
+                            <input type="hidden" id="id_user" name="id_user" value="{{$userchat->id}}">
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-chat" placeholder="Enter chat"/>
@@ -32,11 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script type="text/javascript">
     var socket = io.connect('http://localhost:8888');
-    // var socket = io.connect('http://localhost:8888/iniciando/'+'#id_user');
+    var channel =  $('#text-name').val();
     jQuery(document).ready(function($){
         $('#submit-chat').click(function(){
             if($('#text-chat').val() != ""){
-                var data = {name: $('#text-name').val(), message: $('#text-chat').val(), token: $('#token').val()}
+                console.log($('#id_user').val());
+                
+                var data = {name: $('#text-name').val(), message: $('#text-chat').val(), id: $('#id_user').val()}
                 socket.emit('sendChatToServer', data );
                 $clean=$('#text-chat').val('')
 
@@ -45,7 +48,7 @@
             }
             return false;
         });
-        socket.on('serverChatToClient', function(message){
+        socket.on(channel, function(message){
             $('.chat-content ul').append('<li><strong>'+message.name+':</strong> '+message.message+'</li>');
         });
     });

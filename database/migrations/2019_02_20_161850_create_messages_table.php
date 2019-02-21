@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->integer('admin_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('message');
-            $table->boolean('free');
+            $table->boolean('who_send');
             $table->foreign('admin_id')
                 ->references('id')->on('admins')
                 ->onDelete('cascade');

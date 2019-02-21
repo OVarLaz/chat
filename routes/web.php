@@ -20,5 +20,5 @@ Route::get('/iniciando/{id}', 'HomeController@show');
 Route::get('/chat', 'HomeController@chat')->name('chat');
 
 
-// Route::get('/admin', 'HomeController@admin')->name('admin');
+Route::get('/admin', 'HomeController@admin')->name('admin');
 //Route::post('/post-message', 'ChatController@postMessage');

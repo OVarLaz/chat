@@ -21,12 +21,23 @@ io.on('connection', function (socket) {
 });
 */
 
+
+
 var io = require('socket.io')(8888);
+var mysql = require('mysql');
+
+var db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'chatatsa',
+    password: ''
+});
 users = {};
 io.on('connection', function(socket) {
     //console.log(io.io.engine.id);
     console.log("Connected");
-    //console.log(this.socket.sessionid);
+    //var mynamespace = 
+
     //console.log(socket);
 
     io.clients((error, clients) => {
@@ -35,9 +46,42 @@ io.on('connection', function(socket) {
     });
 
     socket.on('sendChatToServer', function(message){
+        //console.log(clients.id);
         console.log(message);
-        io.sockets.emit('serverChatToClient', message);
-        io.sockets.emit('serverChatToClientadm', message);    
+        //console.log('sendChatToServer');
+        var channel = message.name;
+        //console.log(channel);
+        var post = {
+            admin_id: 2,
+            user_id: 1,
+            json_message: " req.body.password",
+            who_send: 1
+        };
+
+        var query = db.query('INSERT INTO messages VALUES ?', post, function (err, result) {
+            if (err) {
+                console.log(err.message);
+            } else {
+                console.log('success');
+            }
+        });
+        console.log(query.sql);
+        io.sockets.emit(channel, message);
+        
+        
+        
+    });
+
+    socket.on('sendChatToClient', function (message) {
+        //console.log(clients.id);
+        console.log(message);
+        //console.log('sendChatToClient');
+        
+        var channel = message.channel;
+        //console.log(channel);
+        
+        io.sockets.emit('adminChat', message);
+        io.sockets.emit(channel, message);
     });
 
     socket.on('disconnect', function(socket){

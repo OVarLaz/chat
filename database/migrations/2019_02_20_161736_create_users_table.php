@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('dni')->unique();
             $table->string('phone');
+            $table->boolean('free');
             $table->string('tokenchat');
             //$table->rememberToken();
             $table->timestamps();

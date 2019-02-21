@@ -11,8 +11,13 @@
             <div class="chat-form">
                 <form class="form-horizontal">
                     <div class="form-group">
+
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="text-name" placeholder="Admin"/>
+                            <input type="text" class="form-control" id="admin-name" placeholder="Admin"/>
+                        </div>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="text-name" placeholder="Enter channel"/>
                         </div>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="text-chat" placeholder="Enter chat"/>
@@ -27,22 +32,28 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 <script type="text/javascript">
     var socket = io.connect('http://localhost:8888');
+    var channel =  $('#text-name').val();
     jQuery(document).ready(function($){
         $('#submit-chat').click(function(){
             if($('#text-chat').val() != ""){
-                var data = {name: $('#text-name').val(), message: $('#text-chat').val()}
-                socket.emit('sendChatToServer', data );
-                $clean=$('#text-chat').val('');
+                
+                var data = {channel: $('#text-name').val(), message: $('#text-chat').val(), name: $('#admin-name').val()}
+                socket.emit('sendChatToClient', data );
+                $clean=$('#text-chat').val('')
+
             }else{
                 alert('Please enter text to chat');
             }
             return false;
         });
-        socket.on('serverChatToClientadm', function(message){
+        
+        socket.on('adminChat', function(message){
+            console.log('adminChat');
+            
             $('.chat-content ul').append('<li><strong>'+message.name+':</strong> '+message.message+'</li>');
         });
     });
