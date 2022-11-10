@@ -21,9 +21,9 @@
     "lodash": "^4.17.4",
     "redis": "^2.8.0",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.0.4",
+    "socket.io-client": "^2.5.0",
     "vue": "^2.5.7",
-    "vue-socket.io": "^2.1.1-a",
+    "vue-socket.io": "^3.0.10",
     "webpack": "^3.6.0"
   },
   "dependencies": {
