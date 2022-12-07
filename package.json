@@ -13,7 +13,7 @@
     "axios": "^0.17",
     "bootstrap-sass": "^3.3.7",
     "cross-env": "^5.1",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "ioredis": "^3.2.1",
     "jquery": "^3.2",
     "laravel-echo": "^1.3.2",
@@ -27,7 +27,7 @@
     "webpack": "^3.6.0"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "socketio-shared-webworker": "^1.0.2"
   }
 }
